@@ -5,8 +5,13 @@ import { ProductsList } from "../components/Product/ProductsList";
 export const ProductsPage: React.FC = () => {
   return (
     <ProductProvider>
-      <div className="p-6">
-        <ProductsList />
+      <div className="w-full h-full bg-gray-100">
+        <main className="h-full w-4/5 mx-auto flex flex-col items-center py-6">
+          <section className="w-full bg-white py-10 px-10 rounded-md mb-4 flex items-center justify-center"></section>
+          <section className="w-full bg-white py-10 px-10 rounded-md mb-4 flex items-center justify-center">
+            <ProductsList />
+          </section>
+        </main>
       </div>
     </ProductProvider>
   );
