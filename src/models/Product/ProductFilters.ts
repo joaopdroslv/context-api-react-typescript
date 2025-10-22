@@ -1,4 +1,4 @@
-export interface ProductFilter {
+export interface ProductFilters {
   keywords?: string;
   categories?: number[];
   price_min?: number;

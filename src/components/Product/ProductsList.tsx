@@ -1,6 +1,6 @@
 import React from "react";
 import { useProduct } from "../../hooks/useProduct";
-import type { Product } from "../../models/Product";
+import type { Product } from "../../models/Product/Product";
 
 export const ProductsList: React.FC = () => {
   const { products, loading } = useProduct();
