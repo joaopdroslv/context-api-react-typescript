@@ -1,4 +1,4 @@
-import { ProductsPage } from "./pages/ProductPage";
+import { ProductsPage } from "./pages/ProductsPage";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { ROUTES } from "./routes";
 
