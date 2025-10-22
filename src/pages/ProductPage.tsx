@@ -1,6 +1,6 @@
 import React from "react";
 import { ProductProvider } from "../context/ProductContext";
-import { ProductList } from "../components/ProductList";
+import { ProductList } from "../components/Product/ProductList";
 
 export const ProductsPage: React.FC = () => {
   return (
