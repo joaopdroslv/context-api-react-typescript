@@ -1,8 +1,8 @@
 import React from "react";
-import { useProduct } from "../../hooks/useProduct";
+import { useProducts } from "../../hooks/useProducts";
 
 export const ProductsFilter: React.FC = () => {
-  const { setFilters } = useProduct();
+  const { setFilters } = useProducts();
 
   return <div>component to filter products</div>;
 };

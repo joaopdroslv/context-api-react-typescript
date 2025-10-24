@@ -1,11 +1,11 @@
 import React from "react";
-import { ProductProvider } from "../context/ProductContext";
 import { ProductsList } from "../components/Product/ProductsList";
 import { ProductsFilter } from "../components/Product/ProductsFilter";
+import { ProductsProvider } from "../context/Product/ProductsContext";
 
 export const ProductsPage: React.FC = () => {
   return (
-    <ProductProvider>
+    <ProductsProvider>
       <div className="w-full h-full bg-gray-100">
         <main className="h-full w-4/5 mx-auto flex flex-col items-center py-6">
           <section className="w-full bg-white py-10 px-10 rounded-md mb-4 flex items-center justify-center">
@@ -16,6 +16,6 @@ export const ProductsPage: React.FC = () => {
           </section>
         </main>
       </div>
-    </ProductProvider>
+    </ProductsProvider>
   );
 };

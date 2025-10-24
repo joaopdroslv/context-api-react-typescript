@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import type { Product } from "../models/Product/Product";
-import type { ProductFilters } from "../models/Product/ProductFilters";
-import { ProductService } from "../services/Product/ProductService";
+import type { Product } from "../../models/Product/Product";
+import type { ProductFilters } from "../../models/Product/ProductFilters";
+import { ProductService } from "../../services/Product/ProductService";
 
-interface ProductContextProps {
+interface ProductsContextProps {
   products: Product[];
   loading: boolean;
   filters: ProductFilters;
@@ -11,11 +11,11 @@ interface ProductContextProps {
   refreshProducts: (filters?: ProductFilters) => Promise<void>;
 }
 
-const ProductContext = createContext<ProductContextProps | undefined>(
+const ProductsContext = createContext<ProductsContextProps | undefined>(
   undefined
 );
 
-export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
+export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -41,18 +41,18 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [filters]);
 
   return (
-    <ProductContext.Provider
+    <ProductsContext.Provider
       value={{ products, loading, filters, setFilters, refreshProducts }}
     >
       {children}
-    </ProductContext.Provider>
+    </ProductsContext.Provider>
   );
 };
 
-export const useProductContext = (): ProductContextProps => {
-  const context = useContext(ProductContext);
+export const useProductsContext = (): ProductsContextProps => {
+  const context = useContext(ProductsContext);
   if (!context) {
-    throw new Error("useProductContext must be used within a ProductProvider");
+    throw new Error("useProductsContext must be used within a ProductProvider");
   }
   return context;
 };
