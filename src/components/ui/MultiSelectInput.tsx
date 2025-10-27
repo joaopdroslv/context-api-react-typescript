@@ -1,27 +1,27 @@
 import React, { useState, useRef, useEffect } from "react";
 
-interface MultiSelectInputProps<T> {
+interface MultiSelectInputProps<T, U extends string | number> {
   options: T[];
-  selected: (string | number)[];
-  setSelected: (values: (string | number)[]) => void;
+  selected: U[];
+  setSelected: React.Dispatch<React.SetStateAction<U[]>>;
   toSelect: keyof T;
   toDisplay: keyof T;
   placeholder?: string;
 }
 
-export function MultiSelectInput<T extends Record<string, any>>({
+export function MultiSelectInput<T, U extends string | number>({
   options,
   selected,
   setSelected,
   toSelect,
   toDisplay,
   placeholder = "Choose a option...",
-}: MultiSelectInputProps<T>) {
+}: MultiSelectInputProps<T, U>) {
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState("");
   const ref = useRef<HTMLDivElement>(null);
 
-  const toggleSelect = (value: string | number) => {
+  const toggleSelect = (value: U) => {
     if (selected.includes(value)) {
       setSelected(selected.filter((v) => v !== value));
     } else {
@@ -86,7 +86,7 @@ export function MultiSelectInput<T extends Record<string, any>>({
         <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-40 overflow-y-auto">
           {filteredOptions.length > 0 ? (
             filteredOptions.map((opt, i) => {
-              const val = opt[toSelect] as string | number;
+              const val = opt[toSelect] as U;
               const name = String(opt[toDisplay]);
               const isSelected = selected.includes(val);
               return (
@@ -104,7 +104,7 @@ export function MultiSelectInput<T extends Record<string, any>>({
             })
           ) : (
             <div className="px-3 py-2 text-sm text-gray-500">
-              Nenhum resultado
+              No result found
             </div>
           )}
         </div>
