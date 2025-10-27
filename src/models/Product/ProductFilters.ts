@@ -1,5 +1,5 @@
 export interface ProductFilters {
-  keywords?: string;
+  keywords?: string[];
   categories?: number[];
   price_min?: number;
   price_max?: number;
