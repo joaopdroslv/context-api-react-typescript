@@ -1,7 +1,7 @@
 export interface ProductFilters {
   keywords?: string[];
-  categoriesIds?: number[];
-  suppliersIds?:number[];
+  categories_ids?: number[];
+  suppliers_ids?:number[];
   price_min?: number;
   price_max?: number;
   rate_min?: number;
