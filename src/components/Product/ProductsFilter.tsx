@@ -2,58 +2,64 @@ import React, { useState, useEffect } from "react";
 import { useProducts } from "../../hooks/useProducts";
 import { TagsInput } from "../ui/TagsInput";
 import { MultiSelectInput } from "../ui/MultiSelectInput";
-import { categories as availableCategories, suppliers } from "../../database";
+import { categories as availableCategories } from "../../database";
 import { suppliers as availableSuppliers } from "../../database";
+import { ActionButton } from "../ui/ActionButton";
 
 export const ProductsFilter: React.FC = () => {
-  const [keywords, setKeywords] = useState<string[]>([]);
-  const [categories, setCategories] = useState<number[]>([]);
-  const [suppliers, setSuppliers] = useState<number[]>([]);
-  const { updateFilters } = useProducts();
-
-  useEffect(() => {
-    updateFilters("keywords", keywords);
-    updateFilters("categories_ids", categories);
-    updateFilters("suppliers_ids", suppliers);
-  }, [keywords, categories]);
+  const { filters, updateFilters, clearFilters } = useProducts();
 
   return (
-    <div className="w-full grid grid-cols-6 gap-4">
-      <div className="col-span-2">
-        <label htmlFor="keywords" className="block mb-2 text-sm font-medium">
-          By name
-        </label>
-        <TagsInput
-          tags={keywords}
-          setTags={setKeywords}
-          placeholder="Use one/many keywords..."
-        />
+    <div className="w-full">
+      <div className="grid grid-cols-6 gap-4">
+        <div className="col-span-2">
+          <label htmlFor="keywords" className="block mb-2 text-sm font-medium">
+            By name
+          </label>
+          <TagsInput
+            tags={filters.keywords ?? []}
+            setTags={(tags) => updateFilters("keywords", tags)}
+            placeholder="Use one/many keywords..."
+          />
+        </div>
+        <div className="col-span-2">
+          <label
+            htmlFor="categories"
+            className="block mb-2 text-sm font-medium"
+          >
+            By category
+          </label>
+          <MultiSelectInput
+            options={availableCategories}
+            selected={filters.categories_ids ?? []}
+            setSelected={(ids) =>
+              updateFilters("categories_ids", ids as number[])
+            }
+            keyToSelect="id"
+            keyToDisplay="name"
+            placeholder="Select one/many categories..."
+          />
+        </div>
+        <div className="col-span-2">
+          <label htmlFor="suppliers" className="block mb-2 text-sm font-medium">
+            By supplier
+          </label>
+          <MultiSelectInput
+            options={availableSuppliers}
+            selected={filters.suppliers_ids ?? []}
+            setSelected={(ids) =>
+              updateFilters("suppliers_ids", ids as number[])
+            }
+            keyToSelect="id"
+            keyToDisplay="name"
+            placeholder="Select one/many suppliers..."
+          />
+        </div>
       </div>
-      <div className="col-span-2">
-        <label htmlFor="categories" className="block mb-2 text-sm font-medium">
-          By category
-        </label>
-        <MultiSelectInput
-          options={availableCategories}
-          selected={categories}
-          setSelected={setCategories}
-          keyToSelect="id"
-          keyToDisplay="name"
-          placeholder="Select one/many categories..."
-        />
-      </div>
-      <div className="col-span-2">
-        <label htmlFor="categories" className="block mb-2 text-sm font-medium">
-          By supplier
-        </label>
-        <MultiSelectInput
-          options={availableSuppliers}
-          selected={suppliers}
-          setSelected={setSuppliers}
-          keyToSelect="id"
-          keyToDisplay="name"
-          placeholder="Select one/many suppliers..."
-        />
+      <div className="w-full flex justify-end mt-6">
+        <ActionButton color="red" onClickCallback={clearFilters}>
+          Clear filter
+        </ActionButton>
       </div>
     </div>
   );

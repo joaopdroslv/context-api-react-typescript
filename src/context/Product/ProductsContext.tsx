@@ -12,9 +12,19 @@ interface ProductsContextProps {
     key: K,
     value: ProductFilters[K]
   ) => void;
-  cleanFilters: () => void;
+  clearFilters: () => void;
   refreshProducts: (filters?: ProductFilters) => Promise<void>;
 }
+
+const defaultProductFilters: ProductFilters = {
+  keywords: [],
+  categories_ids: [],
+  suppliers_ids: [],
+  price_min: 0,
+  price_max: 0,
+  rate_min: 0,
+  rate_max: 0,
+};
 
 const ProductsContext = createContext<ProductsContextProps | undefined>(
   undefined
@@ -24,7 +34,7 @@ export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [filters, setFilters] = useState<ProductFilters>({});
+  const [filters, setFilters] = useState<ProductFilters>(defaultProductFilters);
   const [loading, setLoading] = useState<boolean>(true);
   const service = new ProductService();
 
@@ -51,7 +61,16 @@ export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
     }));
   };
 
-  const cleanFilters = () => setFilters({});
+  const clearFilters = () =>
+    setFilters({
+      keywords: [],
+      categories_ids: [],
+      suppliers_ids: [],
+      price_min: 0,
+      price_max: 0,
+      rate_min: 0,
+      rate_max: 0,
+    });
 
   useEffect(() => {
     refreshProducts();
@@ -64,7 +83,7 @@ export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
         loading,
         filters,
         setFilters,
-        cleanFilters,
+        clearFilters: clearFilters,
         updateFilters,
         refreshProducts,
       }}

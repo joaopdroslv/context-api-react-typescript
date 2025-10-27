@@ -11,21 +11,11 @@ export const ProductsList: React.FC = () => {
     <table className="min-w-full shadow-md rounded-md overflow-hidden divide-y divide-gray-200">
       <thead className="bg-blue-600 text-white">
         <tr>
-          <th className="px-3 py-3 text-left text-sm font-medium">
-            #
-          </th>
-          <th className="px-3 py-3 text-left text-sm font-medium">
-            Name
-          </th>
-          <th className="px-3 py-3 text-left text-sm font-medium">
-            Category
-          </th>
-          <th className="px-3 py-3 text-left text-sm font-medium">
-            Price
-          </th>
-          <th className="px-3 py-3 text-left text-sm font-medium">
-            Rate
-          </th>
+          <th className="px-3 py-3 text-left text-sm font-medium">#</th>
+          <th className="px-3 py-3 text-left text-sm font-medium">Name</th>
+          <th className="px-3 py-3 text-left text-sm font-medium">Category</th>
+          <th className="px-3 py-3 text-left text-sm font-medium">Price</th>
+          <th className="px-3 py-3 text-left text-sm font-medium">Rate</th>
           <th className="px-3 py-3 text-left text-sm font-medium">
             Rate Count
           </th>
@@ -33,7 +23,7 @@ export const ProductsList: React.FC = () => {
       </thead>
       <tbody className="divide-y divide-gray-200">
         {products.map((product: Product) => (
-          <tr className="hover:bg-gray-100 cursor-pointer">
+          <tr key={product.id} className="hover:bg-gray-100 cursor-pointer">
             <td className="px-3 py-3 text-sm">{product.id}</td>
             <td className="px-3 py-3 text-sm">{product.title}</td>
             <td className="px-3 py-3 text-sm capitalize">{product.category}</td>
