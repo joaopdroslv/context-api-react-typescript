@@ -8,6 +8,11 @@ interface ProductsContextProps {
   loading: boolean;
   filters: ProductFilters;
   setFilters: (filters: ProductFilters) => void;
+  updateFilters: <K extends keyof ProductFilters>(
+    key: K,
+    value: ProductFilters[K]
+  ) => void;
+  cleanFilters: () => void;
   refreshProducts: (filters?: ProductFilters) => Promise<void>;
 }
 
@@ -36,13 +41,33 @@ export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const updateFilters = <K extends keyof ProductFilters>(
+    key: K,
+    value: ProductFilters[K]
+  ) => {
+    setFilters((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  const cleanFilters = () => setFilters({});
+
   useEffect(() => {
     refreshProducts();
   }, [filters]);
 
   return (
     <ProductsContext.Provider
-      value={{ products, loading, filters, setFilters, refreshProducts }}
+      value={{
+        products,
+        loading,
+        filters,
+        setFilters,
+        cleanFilters,
+        updateFilters,
+        refreshProducts,
+      }}
     >
       {children}
     </ProductsContext.Provider>
