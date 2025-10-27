@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MultiSelectInput } from "../components/ui/MultiSelectInput";
-import { RangeSlider } from "../components/ui/RangeSliderInput";
+import { RangeSliderInput } from "../components/ui/RangeSliderInput";
 
 interface User {
   id: number;
@@ -88,7 +88,7 @@ export const TestPage = () => {
       </div>
       <div className="p-4 max-w-full">
         <h1 className="text-lg font-bold mb-2">Pick a max n min value</h1>
-        <RangeSlider
+        <RangeSliderInput
           min={min}
           max={max}
           step={1}

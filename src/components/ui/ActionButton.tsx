@@ -11,7 +11,7 @@ type ActionButtonColor =
 
 interface ActionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ActionButtonColor;
-  onClickCallback?: (event: MouseEvent<HTMLButtonElement>) => void;
+  handleClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const colorClasses: Record<ActionButtonColor, string> = {
@@ -31,7 +31,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   color = "default",
   className = "",
   children,
-  onClickCallback,
+  handleClick,
   ...props
 }) => {
   const classes = `font-medium rounded-lg text-sm px-4 py-2.5 text-center focus:outline-none cursor-pointer ${colorClasses[color]} ${className}`;
@@ -42,7 +42,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       {...props}
       onClick={(event) => {
         event.preventDefault();
-        onClickCallback?.(event);
+        handleClick?.(event);
       }}
     >
       {children}

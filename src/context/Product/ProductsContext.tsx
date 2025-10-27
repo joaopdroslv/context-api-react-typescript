@@ -51,6 +51,10 @@ export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  useEffect(() => {
+    refreshProducts(filters);
+  }, []);
+
   const updateFilters = <K extends keyof ProductFilters>(
     key: K,
     value: ProductFilters[K]
@@ -71,10 +75,6 @@ export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
       rate_min: 0,
       rate_max: 0,
     });
-
-  useEffect(() => {
-    refreshProducts();
-  }, [filters]);
 
   return (
     <ProductsContext.Provider

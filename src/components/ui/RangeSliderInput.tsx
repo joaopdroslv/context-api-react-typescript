@@ -1,6 +1,6 @@
 import React from "react";
 
-interface RangeSliderProps {
+interface RangeSliderInputProps {
   min: number;
   max: number;
   step?: number;
@@ -8,7 +8,7 @@ interface RangeSliderProps {
   setValues: (values: [number, number]) => void;
 }
 
-export const RangeSlider: React.FC<RangeSliderProps> = ({
+export const RangeSliderInput: React.FC<RangeSliderInputProps> = ({
   min,
   max,
   step = 1,

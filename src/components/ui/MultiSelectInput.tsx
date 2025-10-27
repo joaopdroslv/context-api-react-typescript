@@ -55,7 +55,7 @@ export function MultiSelectInput<T, U extends string | number>({
     <div ref={ref} className="relative w-full">
       <div
         onClick={() => setListOpen(!listOpen)}
-        className="flex flex-wrap items-center gap-2 border border-gray-300 rounded-md p-1 cursor-text"
+        className="flex flex-wrap items-center gap-2 border border-gray-300 rounded-md p-1 shadow-xs"
       >
         {selected.map((val) => {
           const item = options.find((o) => o[keyToSelect] === val);
@@ -105,7 +105,6 @@ export function MultiSelectInput<T, U extends string | number>({
                   className={`px-3 py-2 text-sm cursor-pointer hover:bg-blue-100 ${
                     isSelected ? "bg-blue-200" : ""
                   }`}
-                  // className="px-3 py-2 text-sm cursor-pointer hover:bg-blue-100"
                 >
                   {name}
                 </div>
