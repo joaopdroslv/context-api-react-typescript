@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import type { KeyboardEvent } from "react";
+import type { Dispatch, KeyboardEvent, SetStateAction } from "react";
 
 interface MultiSelectInputProps<T, U extends string | number> {
   options: T[];
   selected: U[];
-  setSelected: React.Dispatch<React.SetStateAction<U[]>>;
+  setSelected: Dispatch<SetStateAction<U[]>>;
   keyToSelect: keyof T;
   keyToDisplay: keyof T;
   placeholder?: string;
