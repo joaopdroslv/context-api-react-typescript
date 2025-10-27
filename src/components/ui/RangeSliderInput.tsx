@@ -1,4 +1,5 @@
 import React from "react";
+import type { ChangeEvent } from "react";
 
 interface RangeSliderInputProps {
   min: number;
@@ -17,13 +18,13 @@ export const RangeSliderInput: React.FC<RangeSliderInputProps> = ({
 }) => {
   const [minVal, maxVal] = values;
 
-  const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMinChange = (e: ChangeEvent<HTMLInputElement>) => {
     const val = Math.min(Number(e.target.value), maxVal - step);
     if (val < min) return;
     setValues([val, maxVal]);
   };
 
-  const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMaxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const val = Math.max(Number(e.target.value), minVal + step);
     if (val > max) return;
     setValues([minVal, val]);

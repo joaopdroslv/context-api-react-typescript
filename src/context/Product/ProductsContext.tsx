@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import type { Product } from "../../models/Product/Product";
 import type { ProductFilters } from "../../models/Product/ProductFilters";
 import { ProductService } from "../../services/Product/ProductService";
@@ -30,7 +31,7 @@ const ProductsContext = createContext<ProductsContextProps | undefined>(
   undefined
 );
 
-export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
+export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
