@@ -15,7 +15,7 @@ export const ProductsList: React.FC = () => {
             #
           </th>
           <th className="px-3 py-3 text-left text-sm font-medium uppercase">
-            Title
+            Name
           </th>
           <th className="px-3 py-3 text-left text-sm font-medium uppercase">
             Category
