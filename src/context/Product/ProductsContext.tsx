@@ -17,7 +17,7 @@ interface ProductsContextProps {
   refreshProducts: (filters?: ProductFilters) => Promise<void>;
 }
 
-const defaultProductFilters: ProductFilters = {
+const emptyProductFilters: ProductFilters = {
   keywords: [],
   categories_ids: [],
   suppliers_ids: [],
@@ -35,7 +35,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [filters, setFilters] = useState<ProductFilters>(defaultProductFilters);
+  const [filters, setFilters] = useState<ProductFilters>(emptyProductFilters);
   const [loading, setLoading] = useState<boolean>(true);
   const service = new ProductService();
 

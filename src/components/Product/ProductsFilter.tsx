@@ -76,15 +76,15 @@ export const ProductsFilter: React.FC = () => {
         </div>
       </div>
       <div className="w-full flex justify-end mt-6">
-        <ActionButton color="red" handleClick={clearFilters}>
-          Clear filters
+        <ActionButton color="red" handleClick={clearFilters} className="w-30">
+          Clear
         </ActionButton>
         <ActionButton
           color="green"
           handleClick={() => refreshProducts(filters)}
-          className="ms-2"
+          className="ms-4 w-30"
         >
-          Apply filters
+          Apply
         </ActionButton>
       </div>
     </div>
