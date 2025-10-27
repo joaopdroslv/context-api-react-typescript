@@ -60,12 +60,12 @@ export const TestPage = () => {
     <div className="max-w-xl mx-auto mt-8 flex flex-col justify-start">
       <div className="p-4 max-w-full">
         <h1 className="text-md font-bold mb-2">Pick one or multiple users</h1>
-        <MultiSelectInput<User>
+        <MultiSelectInput
           options={users}
           selected={selectedUsers}
           setSelected={setSelectedUsers}
-          toSelect="id"
-          toDisplay="name"
+          keyToSelect="id"
+          keyToDisplay="name"
           placeholder="Select a user..."
         />
         <div className="mt-4 text-sm">
@@ -74,12 +74,12 @@ export const TestPage = () => {
       </div>
       <div className="p-4 max-w-full">
         <h1 className="text-md font-bold mb-2">Pick one or multiple roles</h1>
-        <MultiSelectInput<Role>
+        <MultiSelectInput
           options={roles}
           selected={selectedRoles}
           setSelected={setSelectedRoles}
-          toSelect="id"
-          toDisplay="name"
+          keyToSelect="id"
+          keyToDisplay="name"
           placeholder="Select a role..."
         />
         <div className="mt-4 text-sm">

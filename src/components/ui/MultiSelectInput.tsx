@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
+import type { KeyboardEvent } from "react";
 
 interface MultiSelectInputProps<T, U extends string | number> {
   options: T[];
   selected: U[];
   setSelected: React.Dispatch<React.SetStateAction<U[]>>;
-  toSelect: keyof T;
-  toDisplay: keyof T;
+  keyToSelect: keyof T;
+  keyToDisplay: keyof T;
   placeholder?: string;
 }
 
@@ -13,12 +14,12 @@ export function MultiSelectInput<T, U extends string | number>({
   options,
   selected,
   setSelected,
-  toSelect,
-  toDisplay,
+  keyToSelect,
+  keyToDisplay,
   placeholder = "Choose a option...",
 }: MultiSelectInputProps<T, U>) {
-  const [open, setOpen] = useState(false);
-  const [filter, setFilter] = useState("");
+  const [listOpen, setListOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const ref = useRef<HTMLDivElement>(null);
 
   const toggleSelect = (value: U) => {
@@ -27,67 +28,75 @@ export function MultiSelectInput<T, U extends string | number>({
     } else {
       setSelected([...selected, value]);
     }
+    setInputValue("");
   };
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node))
-        setOpen(false);
+        setListOpen(false);
     };
     document.addEventListener("mouseup", handleClickOutside);
     return () => document.removeEventListener("mouseup", handleClickOutside);
   }, []);
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && inputValue === "" && selected.length > 0) {
+      setSelected(selected.slice(0, selected.length - 1));
+      setInputValue("");
+    }
+  };
+
   const filteredOptions = options.filter((opt) =>
-    String(opt[toDisplay]).toLowerCase().includes(filter.toLowerCase())
+    String(opt[keyToDisplay]).toLowerCase().includes(inputValue.toLowerCase())
   );
 
   return (
     <div ref={ref} className="relative w-full">
       <div
-        onClick={() => setOpen(!open)}
-        className="flex flex-wrap items-center gap-2 border border-gray-300 rounded-md p-2 cursor-text"
+        onClick={() => setListOpen(!listOpen)}
+        className="flex flex-wrap items-center gap-2 border border-gray-300 rounded-md p-1 cursor-text"
       >
-        {selected.length > 0 ? (
-          selected.map((val) => {
-            const item = options.find((o) => o[toSelect] === val);
-            return (
-              <div
-                key={val}
-                className="flex items-center bg-blue-200 text-blue-800 px-2 rounded-md text-sm"
+        {selected.map((val) => {
+          const item = options.find((o) => o[keyToSelect] === val);
+          return (
+            <div
+              key={val}
+              className="flex items-center bg-blue-200 text-blue-800 px-2 rounded-md text-sm"
+            >
+              {item ? String(item[keyToDisplay]) : val}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleSelect(val);
+                }}
+                className="ml-2 text-blue-600 hover:text-blue-900 cursor-pointer text-xl"
               >
-                {item ? String(item[toDisplay]) : val}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleSelect(val);
-                  }}
-                  className="ml-2 text-blue-600 hover:text-blue-900 cursor-pointer text-xl"
-                >
-                  ×
-                </button>
-              </div>
-            );
-          })
-        ) : (
-          <span className="text-gray-400 text-sm">{placeholder}</span>
-        )}
+                ×
+              </button>
+            </div>
+          );
+        })}
         <input
           type="text"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          placeholder=""
-          className="flex-1 border-none outline-none text-sm p-1 bg-transparent"
+          value={inputValue}
+          onChange={(e) => {
+            setListOpen(true);
+            setInputValue(e.target.value);
+          }}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+          className="flex-1 border-none outline-none text-sm p-1 bg-transparen text-gray-400"
         />
       </div>
 
-      {open && (
+      {listOpen && (
         <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-40 overflow-y-auto">
           {filteredOptions.length > 0 ? (
             filteredOptions.map((opt, i) => {
-              const val = opt[toSelect] as U;
-              const name = String(opt[toDisplay]);
+              const val = opt[keyToSelect] as U;
+              const name = String(opt[keyToDisplay]);
               const isSelected = selected.includes(val);
               return (
                 <div
@@ -103,7 +112,7 @@ export function MultiSelectInput<T, U extends string | number>({
               );
             })
           ) : (
-            <div className="px-3 py-2 text-sm text-gray-500">
+            <div className="px-3 py-2 text-sm text-gray-400">
               No result found
             </div>
           )}

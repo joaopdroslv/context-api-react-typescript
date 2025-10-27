@@ -57,7 +57,7 @@ export const TagsInput: React.FC<TagsInputProps> = ({
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className="flex-1 border-none outline-none text-sm p-1"
+        className="flex-1 border-none outline-none text-sm p-1 bg-transparent text-gray-400"
       />
     </div>
   );
