@@ -47,7 +47,7 @@ export const RangeSliderInput: React.FC<RangeSliderInputProps> = ({
           type="number"
           value={minVal}
           onChange={handleMinChange}
-          className="w-24 text-center text-sm border border-gray-300 rounded-md p-2 outline-none focus:ring-1 focus:ring-blue-400"
+          className="shadow-xs w-25 text-center text-sm border border-gray-300 rounded-md p-2 outline-none"
         />
         <div className="relative flex-1 h-2 flex items-center">
           <input
@@ -97,7 +97,7 @@ export const RangeSliderInput: React.FC<RangeSliderInputProps> = ({
           type="number"
           value={maxVal}
           onChange={handleMaxChange}
-          className="w-24 text-center text-sm border border-gray-300 rounded-md p-2 outline-none focus:ring-1 focus:ring-blue-400"
+          className="shadow-xs w-25 text-center text-sm border border-gray-300 rounded-md p-2 outline-none"
         />
       </div>
     </div>
