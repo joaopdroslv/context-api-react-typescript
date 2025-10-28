@@ -1,6 +1,7 @@
 import { BaseService } from "../BaseService";
 import type { Product } from "../../models/Product/Product";
-import { products } from "../../database";
+import { products, productParams } from "../../database";
+import type { ProductFiltersParams } from "../../models/Product/ProductFiltersParams";
 
 const baseUrl = "";
 
@@ -11,5 +12,9 @@ export class ProductService extends BaseService<Product> {
 
   async getAll(): Promise<Product[]> {
     return products;
+  }
+
+  async getParams(): Promise<ProductFiltersParams> {
+    return productParams;
   }
 }

@@ -2,13 +2,11 @@ import React from "react";
 import { useProducts } from "../../hooks/useProducts";
 import { TagsInput } from "../ui/TagsInput";
 import { MultiSelectInput } from "../ui/MultiSelectInput";
-import { categories as availableCategories } from "../../database";
-import { suppliers as availableSuppliers } from "../../database";
 import { ActionButton } from "../ui/ActionButton";
 import { RangeSliderInput } from "../ui/RangeSliderInput";
 
 export const ProductsFilter: React.FC = () => {
-  const { filters, updateFilters, clearFilters, refreshProducts } =
+  const { filters, params, updateFilters, clearFilters, refreshProducts } =
     useProducts();
 
   return (
@@ -32,7 +30,7 @@ export const ProductsFilter: React.FC = () => {
             By category
           </label>
           <MultiSelectInput
-            options={availableCategories}
+            options={params.categories}
             selected={filters.categories_ids ?? []}
             setSelected={(ids) =>
               updateFilters("categories_ids", ids as number[])
@@ -47,7 +45,7 @@ export const ProductsFilter: React.FC = () => {
             By supplier
           </label>
           <MultiSelectInput
-            options={availableSuppliers}
+            options={params.suppliers}
             selected={filters.suppliers_ids ?? []}
             setSelected={(ids) =>
               updateFilters("suppliers_ids", ids as number[])

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import type { Product } from "../../models/Product/Product";
+import type { ProductFiltersParams } from "../../models/Product/ProductFiltersParams";
 import type { ProductFilters } from "../../models/Product/ProductFilters";
 import { ProductService } from "../../services/Product/ProductService";
 
@@ -8,6 +9,7 @@ interface ProductsContextProps {
   products: Product[];
   loading: boolean;
   filters: ProductFilters;
+  params: ProductFiltersParams;
   setFilters: (filters: ProductFilters) => void;
   updateFilters: <K extends keyof ProductFilters>(
     key: K,
@@ -27,6 +29,11 @@ const emptyProductFilters: ProductFilters = {
   rate_max: 0,
 };
 
+const emptyProductParams: ProductFiltersParams = {
+  categories: [],
+  suppliers: [],
+};
+
 const ProductsContext = createContext<ProductsContextProps | undefined>(
   undefined
 );
@@ -35,6 +42,8 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [params, setParams] =
+    useState<ProductFiltersParams>(emptyProductParams);
   const [filters, setFilters] = useState<ProductFilters>(emptyProductFilters);
   const [loading, setLoading] = useState<boolean>(true);
   const service = new ProductService();
@@ -52,8 +61,18 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
+  const getParams = async (): Promise<void> => {
+    try {
+      const data = await service.getParams();
+      setParams(data);
+    } catch (err) {
+      console.error("Failed to load params:", err);
+    }
+  };
+
   useEffect(() => {
     getAll(filters);
+    getParams();
   }, []);
 
   const updateFilters = <K extends keyof ProductFilters>(
@@ -83,6 +102,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
         products,
         loading,
         filters,
+        params,
         setFilters,
         clearFilters: clearFilters,
         updateFilters,

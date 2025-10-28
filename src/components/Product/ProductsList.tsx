@@ -9,8 +9,6 @@ export const ProductsList: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
 
-  console.log(products);
-
   return (
     <table className="min-w-full shadow-md rounded-md overflow-hidden divide-y divide-gray-200">
       <thead className="bg-blue-600 text-white">
