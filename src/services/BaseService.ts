@@ -13,10 +13,4 @@ export class BaseService<T> {
     }
     return data;
   }
-
-  async getAll(route: string): Promise<T[]> {
-    const url = `${this.baseUrl}/${route}`;
-    const res = await fetch(url); // Route should be something like /products
-    return this.handleResponse(res);
-  }
 }

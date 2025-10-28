@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useProducts } from "../../hooks/useProducts";
 import { TagsInput } from "../ui/TagsInput";
 import { MultiSelectInput } from "../ui/MultiSelectInput";

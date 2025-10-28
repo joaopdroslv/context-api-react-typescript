@@ -39,11 +39,11 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   const [loading, setLoading] = useState<boolean>(true);
   const service = new ProductService();
 
-  const refreshProducts = async (f: ProductFilters = filters) => {
+  const getAll = async (f: ProductFilters = filters): Promise<void> => {
     setLoading(true);
     try {
       console.log(f);
-      const data = await service.getAll("products");
+      const data = await service.getAll();
       setProducts(data);
     } catch (err) {
       console.error("Failed to load products:", err);
@@ -53,7 +53,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   useEffect(() => {
-    refreshProducts(filters);
+    getAll(filters);
   }, []);
 
   const updateFilters = <K extends keyof ProductFilters>(
@@ -86,7 +86,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
         setFilters,
         clearFilters: clearFilters,
         updateFilters,
-        refreshProducts,
+        refreshProducts: getAll,
       }}
     >
       {children}

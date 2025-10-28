@@ -25,11 +25,13 @@ export const ProductsList: React.FC = () => {
         {products.map((product: Product) => (
           <tr key={product.id} className="hover:bg-gray-100 cursor-pointer">
             <td className="px-3 py-3 text-sm">{product.id}</td>
-            <td className="px-3 py-3 text-sm">{product.title}</td>
-            <td className="px-3 py-3 text-sm capitalize">{product.category}</td>
-            <td className="px-3 py-3 text-sm">$ {product.price}</td>
-            <td className="px-3 py-3 text-sm">{product.rating.rate}</td>
-            <td className="px-3 py-3 text-sm">{product.rating.count}</td>
+            <td className="px-3 py-3 text-sm">{product.name}</td>
+            {/* <td className="px-3 py-3 text-sm capitalize">{product.category}</td> */}
+            <td className="px-3 py-3 text-sm">
+              {product.price.amount} {product.price.currency}
+            </td>
+            <td className="px-3 py-3 text-sm">{product.rating}</td>
+            {/* <td className="px-3 py-3 text-sm">{product.rating.count}</td> */}
           </tr>
         ))}
       </tbody>
