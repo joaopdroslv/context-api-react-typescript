@@ -1,73 +1,32 @@
-# React + TypeScript + Vite
+# React + TypeScript Product App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple `React + TypeScript` project demonstrating a product listing page with dynamic filtering capabilities. This project uses a context-based approach to manage product data and filters.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `React` for UI rendering
+- `TypeScript` for static typing
+- `Tailwind CSS` for styling
+- `Context API` for state management
+- `Custom components` for tags, multi-select, range sliders, and action buttons
 
-## React Compiler
+## Key Components
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **ProductsProvider / ProductsContext**
+  Handles fetching products, storing filters, and providing methods to update or clear filters.
+  Accessible via `useProductsContext` hook.
+- **ProductsPage**
+  Main page that wraps the product filter and list inside the provider.
 
-## Expanding the ESLint configuration
+- **ProductsFilter**
+  Displays filtering UI components for keywords, categories, suppliers, and price ranges.
+  Allows clearing and applying filters.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **ProductsList**
+  Displays the filtered list of products (implementation depends on your ProductService).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **UI Components**
+- `TagsInput`: Input for keyword tags
+- `MultiSelectInput`: Select multiple categories or suppliers
+- `RangeSliderInput`: Select price ranges
+- `ActionButton`: Reusable button component
