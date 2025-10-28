@@ -563,7 +563,7 @@ export const products: Product[] = [
   },
 ];
 
-export const productParams: ProductFiltersParams = {
+export const productFiltersParams: ProductFiltersParams = {
   categories: categories.map((cat) => ({ id: cat.id, name: cat.name })),
   suppliers: suppliers.map((supp) => ({ id: supp.id, name: supp.name })),
 };
