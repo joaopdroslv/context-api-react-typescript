@@ -2,6 +2,7 @@ import type { Category } from "./models/Category/Category";
 import type { Currency } from "./models/Money/Currency";
 import type { MonetaryAmount } from "./models/Money/MonetaryAmount";
 import type { Product } from "./models/Product/Product";
+import type { ProductFiltersParams } from "./models/Product/ProductFiltersParams";
 import type { Supplier } from "./models/Supplier/Supplier";
 
 export const categories: Category[] = [
@@ -561,3 +562,8 @@ export const products: Product[] = [
     reviews: [],
   },
 ];
+
+export const productParams: ProductFiltersParams = {
+  categories: categories.map((cat) => ({ id: cat.id, name: cat.name })),
+  suppliers: suppliers.map((supp) => ({ id: supp.id, name: supp.name })),
+};
