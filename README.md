@@ -1,6 +1,6 @@
 # React + TypeScript Product App
 
-A simple `React + TypeScript` project demonstrating a product listing page with dynamic filtering capabilities. This project uses a context-based approach to manage product data and filters.
+A simple `React + TypeScript` project demonstrating a product listing page with dynamic filtering capabilities. This project was built as **a personal exercise to revisit React's Context API**, a concept I learned back in college but hadn’t used in a long time. I created this project to refresh my memory and practice managing shared state in a React application.
 
 ## Tech Stack
 
