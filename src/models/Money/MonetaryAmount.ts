@@ -1,4 +1,4 @@
-import type { Currency } from "../Product/Currency";
+import type { Currency } from "./Currency";
 
 export interface MonetaryAmount {
   amount: number;

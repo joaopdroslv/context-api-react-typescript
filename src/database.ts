@@ -1,82 +1,8 @@
-export type Currency = "USD" | "EUR" | "BRL" | "GBP";
-
-export interface Address {
-  street: string;
-  city: string;
-  state?: string;
-  postalCode?: string;
-  country: string;
-}
-
-export interface Contact {
-  name: string;
-  email: string;
-  phone?: string;
-  role?: string;
-}
-
-export interface Supplier {
-  id: number;
-  name: string;
-  legalName?: string;
-  website?: string;
-  contact: Contact;
-  address: Address;
-  rating?: number; // 0-5
-  leadTimeDays?: number; // average lead time
-  minOrderQty?: number;
-  paymentTerms?: string; // e.g. NET30
-  productIds?: number[]; // product ids they commonly supply
-  notes?: string;
-}
-
-export interface Dimension {
-  widthMm?: number;
-  heightMm?: number;
-  depthMm?: number;
-}
-
-export interface Review {
-  id: number;
-  author: string;
-  rating: number; // 1-5
-  comment?: string;
-  date: string;
-}
-
-export interface MonetaryAmount {
-  amount: number;
-  currency: Currency;
-}
-
-export interface Category {
-  id: number;
-  name: string;
-  description?: string;
-}
-
-export interface Product {
-  id: number;
-  name: string;
-  shortDescription: string;
-  longDescription?: string;
-  categoryIds: number[]; // category ids
-  supplierIds: number[]; // supplier ids
-  price: MonetaryAmount; // sale price
-  cost?: MonetaryAmount; // cost from supplier
-  currency: Currency;
-  stockQuantity: number;
-  stockLocation?: string;
-  weightGrams?: number;
-  dimensions?: Dimension;
-  tags?: string[];
-  images?: string[]; // urls (placeholders)
-  releaseDate?: string;
-  discontinued?: boolean;
-  rating?: number;
-  reviews?: Review[];
-  extra?: Record<string, any>;
-}
+import type { Category } from "./models/Category/Category";
+import type { Currency } from "./models/Money/Currency";
+import type { MonetaryAmount } from "./models/Money/MonetaryAmount";
+import type { Product } from "./models/Product/Product";
+import type { Supplier } from "./models/Supplier/Supplier";
 
 export const categories: Category[] = [
   {
@@ -113,12 +39,14 @@ export const suppliers: Supplier[] = [
     legalName: "NorthStar Electronics Limited",
     website: "https://www.northstarelectronics.example",
     contact: {
+      id: 1,
       name: "Ava Morgan",
       email: "ava.morgan@northstar.example",
       phone: "+1-212-555-0164",
       role: "Sales Manager",
     },
     address: {
+      id: 1,
       street: "120 Tech Park Ave",
       city: "Newark",
       state: "NJ",
@@ -138,12 +66,14 @@ export const suppliers: Supplier[] = [
     name: "CasaComfort Supplies",
     website: "https://www.casacomfort.example",
     contact: {
+      id: 2,
       name: "Lucas Pereira",
       email: "lucas@casacomfort.example",
       phone: "+55-11-98765-4321",
       role: "Account Executive",
     },
     address: {
+      id: 2,
       street: "Rua das Flores 400",
       city: "São Paulo",
       state: "SP",
@@ -162,12 +92,14 @@ export const suppliers: Supplier[] = [
     name: "Peak Performance Gear",
     website: "https://www.peakperformance.example",
     contact: {
+      id: 3,
       name: "Emma Johnson",
       email: "emma.j@peakperformance.example",
       phone: "+44-20-7946-0011",
       role: "Head of Partnerships",
     },
     address: {
+      id: 3,
       street: "45 Hill Lane",
       city: "London",
       state: "",
@@ -187,12 +119,14 @@ export const suppliers: Supplier[] = [
     legalName: "UrbanStyle Apparel Company",
     website: "https://www.urbanstyle.example",
     contact: {
+      id: 4,
       name: "Miguel Santos",
       email: "miguel@urbanstyle.example",
       phone: "+55-21-3344-5566",
       role: "Procurement Lead",
     },
     address: {
+      id: 4,
       street: "Avenida Central 210",
       city: "Rio de Janeiro",
       state: "RJ",
@@ -211,12 +145,14 @@ export const suppliers: Supplier[] = [
     name: "BrightToys International",
     website: "https://www.brighttoys.example",
     contact: {
+      id: 5,
       name: "Sofia Rinaldi",
       email: "sofia@brighttoys.example",
       phone: "+39-06-5566-7788",
       role: "Export Manager",
     },
     address: {
+      id: 5,
       street: "Via Roma 12",
       city: "Rome",
       state: "",
@@ -235,12 +171,14 @@ export const suppliers: Supplier[] = [
     name: "Global Components Inc.",
     website: "https://www.globalcomponents.example",
     contact: {
+      id: 6,
       name: "Noah Kim",
       email: "noah.kim@globalcomponents.example",
       phone: "+82-2-345-6789",
       role: "Sales Director",
     },
     address: {
+      id: 6,
       street: "100 Industrial Rd",
       city: "Seoul",
       state: "",
@@ -259,12 +197,14 @@ export const suppliers: Supplier[] = [
     name: "EcoHome Fabrics",
     website: "https://www.ecohome.example",
     contact: {
+      id: 7,
       name: "Olivia Green",
       email: "olivia@ecohome.example",
       phone: "+1-415-555-0199",
       role: "Business Development",
     },
     address: {
+      id: 7,
       street: "22 Greenway Blvd",
       city: "San Francisco",
       state: "CA",
@@ -283,12 +223,14 @@ export const suppliers: Supplier[] = [
     name: "PlayPeak Distributors",
     website: "https://www.playpeak.example",
     contact: {
+      id: 8,
       name: "Ethan Brown",
       email: "ethan@playpeak.example",
       phone: "+61-2-9123-4455",
       role: "Regional Sales",
     },
     address: {
+      id: 8,
       street: "5 Harbor St",
       city: "Sydney",
       state: "NSW",
@@ -307,12 +249,14 @@ export const suppliers: Supplier[] = [
     name: "MetroElectro Parts",
     website: "https://www.metroelectro.example",
     contact: {
+      id: 9,
       name: "Liam O'Connor",
       email: "liam@metroelectro.example",
       phone: "+353-1-234-5678",
       role: "Operations Manager",
     },
     address: {
+      id: 9,
       street: "3 Dock Street",
       city: "Dublin",
       state: "",
@@ -331,12 +275,14 @@ export const suppliers: Supplier[] = [
     name: "FamilyFun Toys Co.",
     website: "https://www.familyfun.example",
     contact: {
+      id: 10,
       name: "Isabella Torres",
       email: "isabella@familyfun.example",
       phone: "+52-55-1234-5678",
       role: "Sales",
     },
     address: {
+      id: 10,
       street: "Calle Alegre 88",
       city: "Mexico City",
       state: "CDMX",
@@ -352,7 +298,7 @@ export const suppliers: Supplier[] = [
   },
 ];
 
-function mkPrice(a: number, c: Currency = "USD"): MonetaryAmount {
+function makePrice(a: number, c: Currency = "USD"): MonetaryAmount {
   return { amount: parseFloat(a.toFixed(2)), currency: c };
 }
 
@@ -364,10 +310,10 @@ export const products: Product[] = [
       "Compact voice-controlled smart speaker. Lorem ipsum dolor sit amet.",
     longDescription:
       "High-fidelity smart speaker with voice assistant, Bluetooth, and multi-room support.",
-    categoryIds: [1],
-    supplierIds: [1],
-    price: mkPrice(99.99),
-    cost: mkPrice(55.0),
+    categories: [categories[1]],
+    suppliers: [suppliers[1]],
+    price: makePrice(99.99),
+    cost: makePrice(55.0),
     currency: "USD",
     stockQuantity: 320,
     stockLocation: "WH-A1",
@@ -395,10 +341,10 @@ export const products: Product[] = [
     shortDescription: "30W USB-C fast charger.",
     longDescription:
       "Portable 30W USB-C PD charger with safety protections and foldable plug.",
-    categoryIds: [1],
-    supplierIds: [6, 9],
-    price: mkPrice(24.5),
-    cost: mkPrice(8.0),
+    categories: [categories[1]],
+    suppliers: [suppliers[6], suppliers[9]],
+    price: makePrice(24.5),
+    cost: makePrice(8.0),
     currency: "USD",
     stockQuantity: 1500,
     stockLocation: "WH-A2",
@@ -418,10 +364,10 @@ export const products: Product[] = [
     shortDescription: "Handmade cotton throw pillow.",
     longDescription:
       "Soft, breathable cotton cover with hypoallergenic filling. Perfect for sofas and bedrooms.",
-    categoryIds: [2],
-    supplierIds: [2, 7],
-    price: mkPrice(29.99, "BRL"),
-    cost: mkPrice(10, "BRL"),
+    categories: [categories[2]],
+    suppliers: [suppliers[2], suppliers[7]],
+    price: makePrice(29.99, "BRL"),
+    cost: makePrice(10, "BRL"),
     currency: "BRL",
     stockQuantity: 420,
     stockLocation: "WH-B1",
@@ -449,10 +395,10 @@ export const products: Product[] = [
     shortDescription: "Lightweight running shoes for road and trail.",
     longDescription:
       "Breathable mesh, responsive sole, available in multiple sizes. Engineered for long-distance comfort.",
-    categoryIds: [3],
-    supplierIds: [3],
-    price: mkPrice(129.99, "GBP"),
-    cost: mkPrice(60, "GBP"),
+    categories: [categories[3]],
+    suppliers: [suppliers[3]],
+    price: makePrice(129.99, "GBP"),
+    cost: makePrice(60, "GBP"),
     currency: "GBP",
     stockQuantity: 210,
     stockLocation: "WH-C1",
@@ -480,10 +426,10 @@ export const products: Product[] = [
     shortDescription: "Classic denim jacket with modern fit.",
     longDescription:
       "Durable denim, reinforced stitching, available in three washes.",
-    categoryIds: [4],
-    supplierIds: [4],
-    price: mkPrice(79.0, "BRL"),
-    cost: mkPrice(32.0, "BRL"),
+    categories: [categories[4]],
+    suppliers: [suppliers[4]],
+    price: makePrice(79.0, "BRL"),
+    cost: makePrice(32.0, "BRL"),
     currency: "BRL",
     stockQuantity: 95,
     stockLocation: "WH-D1",
@@ -503,10 +449,10 @@ export const products: Product[] = [
     shortDescription: "120-piece building blocks.",
     longDescription:
       "High-quality ABS blocks, compatible with major brands. Encourages creativity and motor skills.",
-    categoryIds: [5],
-    supplierIds: [5, 10],
-    price: mkPrice(39.99, "USD"),
-    cost: mkPrice(12.0, "USD"),
+    categories: [categories[5]],
+    suppliers: [suppliers[5], suppliers[10]],
+    price: makePrice(39.99, "USD"),
+    cost: makePrice(12.0, "USD"),
     currency: "USD",
     stockQuantity: 760,
     stockLocation: "WH-E1",
@@ -533,10 +479,10 @@ export const products: Product[] = [
     name: "NorthStar Bluetooth Headphones",
     shortDescription: "Over-ear Bluetooth headphones.",
     longDescription: "Noise-cancelling, 30-hour battery life, comfortable fit.",
-    categoryIds: [1],
-    supplierIds: [1, 6],
-    price: mkPrice(149.99),
-    cost: mkPrice(80),
+    categories: [categories[1]],
+    suppliers: [suppliers[1], suppliers[6]],
+    price: makePrice(149.99),
+    cost: makePrice(80),
     currency: "USD",
     stockQuantity: 260,
     stockLocation: "WH-A3",
@@ -555,10 +501,10 @@ export const products: Product[] = [
     shortDescription: "High-speed HDMI cable.",
     longDescription:
       "Supports 4K@120Hz and HDR. Braided shield and gold-plated connectors.",
-    categoryIds: [1],
-    supplierIds: [9],
-    price: mkPrice(18.75),
-    cost: mkPrice(4.5),
+    categories: [categories[1]],
+    suppliers: [suppliers[9]],
+    price: makePrice(18.75),
+    cost: makePrice(4.5),
     currency: "USD",
     stockQuantity: 2400,
     stockLocation: "WH-A4",
@@ -577,10 +523,10 @@ export const products: Product[] = [
     shortDescription: "Eco bamboo bath mat.",
     longDescription:
       "Anti-slip backing, quick-dry bamboo slats, natural finish.",
-    categoryIds: [2],
-    supplierIds: [2, 7],
-    price: mkPrice(45.0, "BRL"),
-    cost: mkPrice(18.0, "BRL"),
+    categories: [categories[2]],
+    suppliers: [suppliers[2], suppliers[7]],
+    price: makePrice(45.0, "BRL"),
+    cost: makePrice(18.0, "BRL"),
     currency: "BRL",
     stockQuantity: 340,
     stockLocation: "WH-B2",
@@ -598,10 +544,10 @@ export const products: Product[] = [
     name: "Peak Performance Yoga Mat",
     shortDescription: "Non-slip yoga mat.",
     longDescription: "Eco TPE material, 6mm thick, travel-friendly.",
-    categoryIds: [3],
-    supplierIds: [3],
-    price: mkPrice(39.0, "USD"),
-    cost: mkPrice(15.0, "USD"),
+    categories: [categories[3]],
+    suppliers: [suppliers[3]],
+    price: makePrice(39.0, "USD"),
+    cost: makePrice(15.0, "USD"),
     currency: "USD",
     stockQuantity: 520,
     stockLocation: "WH-C2",

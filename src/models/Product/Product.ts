@@ -1,15 +1,17 @@
-import type { MonetaryAmount } from "../MonetaryAmount/MonetaryAmount";
-import type { Currency } from "./Currency";
+import type { MonetaryAmount } from "../Money/MonetaryAmount";
+import type { Currency } from "../Money/Currency";
 import type { Dimension } from "./Dimension";
 import type { Review } from "./Review";
+import type { Supplier } from "../Supplier/Supplier";
+import type { Category } from "../Category/Category";
 
 export interface Product {
   id: number;
   name: string;
   shortDescription: string;
   longDescription?: string;
-  categoryIds: number[]; // category ids
-  supplierIds: number[]; // supplier ids
+  categories: Category[]; // categories
+  suppliers: Supplier[]; // suppliers
   price: MonetaryAmount; // sale price
   cost?: MonetaryAmount; // cost from supplier
   currency: Currency;
