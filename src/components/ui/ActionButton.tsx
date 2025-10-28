@@ -34,7 +34,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   handleClick,
   ...props
 }) => {
-  const classes = `shadow-xs font-medium rounded-lg text-sm px-4 py-2 text-center focus:outline-none cursor-pointer ${colorClasses[color]} ${className}`;
+  const classes = `shadow-sm font-medium rounded-lg text-sm px-4 py-2 text-center focus:outline-none cursor-pointer ${colorClasses[color]} ${className}`;
 
   return (
     <button
