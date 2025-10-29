@@ -1,9 +1,9 @@
-import React from "react";
+import React, { type FC } from "react";
 import { ProductsList } from "../components/Product/ProductsList";
 import { ProductsFilter } from "../components/Product/ProductsFilter";
 import { ProductsProvider } from "../context/Product/ProductsContext";
 
-export const ProductsPage: React.FC = () => {
+export const ProductsPage: FC = () => {
   return (
     <ProductsProvider>
       <div className="w-full h-full bg-gray-100">

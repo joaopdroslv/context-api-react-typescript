@@ -1,9 +1,10 @@
-import {
+import React, {
+  type FC,
+  type ReactNode,
   createContext,
   useCallback,
   useContext,
   useState,
-  type ReactNode,
 } from "react";
 
 interface Toast {
@@ -20,9 +21,7 @@ interface ToastContextProps {
 
 const ToastContext = createContext<ToastContextProps | undefined>(undefined);
 
-export const ToastProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const ToastProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const showToast = useCallback(

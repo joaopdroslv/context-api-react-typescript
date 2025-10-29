@@ -1,11 +1,11 @@
-import React from "react";
+import React, { type FC } from "react";
 import { useProducts } from "../../hooks/useProducts";
 import { TagsInput } from "../ui/TagsInput";
 import { MultiSelectInput } from "../ui/MultiSelectInput";
 import { ActionButton } from "../ui/ActionButton";
 import { RangeSliderInput } from "../ui/RangeSliderInput";
 
-export const ProductsFilter: React.FC = () => {
+export const ProductsFilter: FC = () => {
   const { filters, params, updateFilters, clearFilters, refreshProducts } =
     useProducts();
 

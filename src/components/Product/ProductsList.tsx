@@ -1,10 +1,8 @@
-import React from "react";
+import React, { type FC } from "react";
 import { useProducts } from "../../hooks/useProducts";
 import type { Product } from "../../models/Product/Product";
-import type { Category } from "../../models/Category/Category";
-import type { Supplier } from "../../models/Supplier/Supplier";
 
-export const ProductsList: React.FC = () => {
+export const ProductsList: FC = () => {
   const { products, loading } = useProducts();
 
   if (loading) return <p>Loading...</p>;

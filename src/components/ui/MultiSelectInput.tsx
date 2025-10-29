@@ -1,5 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
-import type { Dispatch, KeyboardEvent, SetStateAction } from "react";
+import React, {
+  type Dispatch,
+  type KeyboardEvent,
+  type SetStateAction,
+  useState,
+  useRef,
+  useEffect,
+} from "react";
 
 interface MultiSelectInputProps<T, U extends string | number> {
   options: T[];

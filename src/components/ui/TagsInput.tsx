@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import type { KeyboardEvent } from "react";
+import React, { type FC, type KeyboardEvent, useState } from "react";
 
 interface TagsInputProps {
   tags: string[];
@@ -7,7 +6,7 @@ interface TagsInputProps {
   placeholder?: string;
 }
 
-export const TagsInput: React.FC<TagsInputProps> = ({
+export const TagsInput: FC<TagsInputProps> = ({
   tags,
   setTags,
   placeholder = "Type a keyword and press enter...",

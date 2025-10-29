@@ -1,5 +1,8 @@
-import React from "react";
-import type { ButtonHTMLAttributes, MouseEvent } from "react";
+import React, {
+  type FC,
+  type ButtonHTMLAttributes,
+  type MouseEvent,
+} from "react";
 
 type ActionButtonColor =
   | "default"
@@ -27,7 +30,7 @@ const colorClasses: Record<ActionButtonColor, string> = {
     "text-purple-700 border border-purple-700 hover:bg-purple-800 hover:text-white dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-500 dark:hover:text-white",
 };
 
-export const ActionButton: React.FC<ActionButtonProps> = ({
+export const ActionButton: FC<ActionButtonProps> = ({
   color = "default",
   className = "",
   children,

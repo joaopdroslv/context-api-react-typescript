@@ -1,10 +1,17 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import type { ReactNode } from "react";
+import React, {
+  type FC,
+  type ReactNode,
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
 import type { Product } from "../../models/Product/Product";
 import type { ProductFiltersParams } from "../../models/Product/ProductFiltersParams";
 import type { ProductFilters } from "../../models/Product/ProductFilters";
 import { ProductService } from "../../services/Product/ProductService";
 import { useToast } from "../../hooks/useToast";
+import { toast } from "react-toastify";
 
 interface ProductsContextProps {
   products: Product[];
@@ -39,9 +46,7 @@ const ProductsContext = createContext<ProductsContextProps | undefined>(
   undefined
 );
 
-export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [params, setParams] =
     useState<ProductFiltersParams>(emptyProductParams);
@@ -56,9 +61,9 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
       console.log(f);
       const data = await service.getAll();
       setProducts(data);
-      showToast("Products loaded successfully!", "success");
+      toast.success("Products loaded successfully!");
     } catch (err) {
-      showToast("Failed to load products!", "error");
+      toast.error("Failed to load products!");
     } finally {
       setLoading(false);
     }
@@ -68,9 +73,9 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
     try {
       const data = await service.getParams();
       setParams(data);
-      showToast("Filter params loaded successfully!", "success");
+      toast.success("Filter params loaded successfully!");
     } catch (err) {
-      showToast("Failed to load filter params!", "error");
+      toast.error("Failed to load filter params!");
     }
   };
 

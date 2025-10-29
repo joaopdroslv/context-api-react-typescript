@@ -1,5 +1,4 @@
-import React from "react";
-import type { ChangeEvent } from "react";
+import React, { type FC, type ChangeEvent } from "react";
 
 interface RangeSliderInputProps {
   min: number;
@@ -9,7 +8,7 @@ interface RangeSliderInputProps {
   setValues: (values: [number, number]) => void;
 }
 
-export const RangeSliderInput: React.FC<RangeSliderInputProps> = ({
+export const RangeSliderInput: FC<RangeSliderInputProps> = ({
   min,
   max,
   step = 1,
