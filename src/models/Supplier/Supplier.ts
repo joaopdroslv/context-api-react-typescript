@@ -15,3 +15,8 @@ export interface Supplier {
   productIds?: number[]; // product ids they commonly supply
   notes?: string;
 }
+
+export interface SupplierMinimal {
+  id: number;
+  name: string;
+}

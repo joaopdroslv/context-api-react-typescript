@@ -1,5 +1,5 @@
-import type { CategoryMinimal } from "../Category/CategoryMinimal";
-import type { SupplierMinimal } from "../Supplier/SupplierMinimal";
+import type { CategoryMinimal } from "../Category/Category";
+import type { SupplierMinimal } from "../Supplier/Supplier";
 
 export interface ProductFiltersParams {
   categories: CategoryMinimal[];
