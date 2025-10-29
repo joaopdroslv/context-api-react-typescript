@@ -13,8 +13,8 @@ export const ProductsFilter: FC = () => {
     <div className="w-full">
       <div className="grid grid-cols-6 gap-4">
         <div className="col-span-2">
-          <label htmlFor="keywords" className="block mb-2 text-sm font-medium">
-            By name
+          <label htmlFor="keywords" className="block mb-3 text-sm font-medium">
+            Product name
           </label>
           <TagsInput
             tags={filters.keywords ?? []}
@@ -25,9 +25,9 @@ export const ProductsFilter: FC = () => {
         <div className="col-span-2">
           <label
             htmlFor="categories"
-            className="block mb-2 text-sm font-medium"
+            className="block mb-3 text-sm font-medium"
           >
-            By category
+            Category
           </label>
           <MultiSelectInput
             options={params.categories}
@@ -41,8 +41,8 @@ export const ProductsFilter: FC = () => {
           />
         </div>
         <div className="col-span-2">
-          <label htmlFor="suppliers" className="block mb-2 text-sm font-medium">
-            By supplier
+          <label htmlFor="suppliers" className="block mb-3 text-sm font-medium">
+            Supplier
           </label>
           <MultiSelectInput
             options={params.suppliers}
@@ -58,8 +58,8 @@ export const ProductsFilter: FC = () => {
       </div>
       <div className="grid grid-cols-6 gap-4 mt-6">
         <div className="col-span-3">
-          <label htmlFor="price" className="block mb-2 text-sm font-medium">
-            By price
+          <label htmlFor="price" className="block mb-3 text-sm font-medium">
+            Product price (unit)
           </label>
           <RangeSliderInput
             min={0}
@@ -73,8 +73,8 @@ export const ProductsFilter: FC = () => {
           />
         </div>
         <div className="col-span-3">
-          <label htmlFor="price" className="block mb-2 text-sm font-medium">
-            By cost
+          <label htmlFor="price" className="block mb-3 text-sm font-medium">
+            Product cost (unit)
           </label>
           <RangeSliderInput
             min={0}
@@ -90,8 +90,8 @@ export const ProductsFilter: FC = () => {
       </div>
       <div className="grid grid-cols-6 gap-4 mt-6">
         <div className="col-span-3">
-          <label htmlFor="rating" className="block mb-2 text-sm font-medium">
-            By rating
+          <label htmlFor="rating" className="block mb-3 text-sm font-medium">
+            Product rating
           </label>
           <RangeSliderInput
             min={0}
