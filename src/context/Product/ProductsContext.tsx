@@ -4,6 +4,7 @@ import type { Product } from "../../models/Product/Product";
 import type { ProductFiltersParams } from "../../models/Product/ProductFiltersParams";
 import type { ProductFilters } from "../../models/Product/ProductFilters";
 import { ProductService } from "../../services/Product/ProductService";
+import { useToast } from "../../hooks/useToast";
 
 interface ProductsContextProps {
   products: Product[];
@@ -47,6 +48,7 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
   const [filters, setFilters] = useState<ProductFilters>(emptyProductFilters);
   const [loading, setLoading] = useState<boolean>(true);
   const service = new ProductService();
+  const { showToast } = useToast();
 
   const getAll = async (f: ProductFilters = filters): Promise<void> => {
     setLoading(true);
@@ -54,8 +56,9 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
       console.log(f);
       const data = await service.getAll();
       setProducts(data);
+      showToast("Products loaded successfully!", "success");
     } catch (err) {
-      console.error("Failed to load products:", err);
+      showToast("Failed to load products!", "error");
     } finally {
       setLoading(false);
     }
@@ -65,8 +68,9 @@ export const ProductsProvider: React.FC<{ children: ReactNode }> = ({
     try {
       const data = await service.getParams();
       setParams(data);
+      showToast("Filter params loaded successfully!", "success");
     } catch (err) {
-      console.error("Failed to load params:", err);
+      showToast("Failed to load filter params!", "error");
     }
   };
 
