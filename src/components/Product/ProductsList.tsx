@@ -74,7 +74,7 @@ export const ProductsList: FC = () => {
 
               {isExpanded && (
                 <tr className="bg-gray-50">
-                  <td colSpan={9} className="px-4 py-4">
+                  <td colSpan={9} className="px-6 py-6">
                     <div className="grid grid-cols-7 gap-10 w-full">
                       <div className="col-span-3 flex flex-col">
                         <h3 className="font-bold"># Description</h3>
@@ -110,11 +110,9 @@ export const ProductsList: FC = () => {
                         </div>
                       </div>
                       <div className="flex flex-col justify-center gap-4">
-                        <ActionButton className="w-30">Update</ActionButton>
-                        <ActionButton className="w-30">Add</ActionButton>
-                        <ActionButton color="red" className="w-30">
-                          Delete
-                        </ActionButton>
+                        <ActionButton>Update</ActionButton>
+                        <ActionButton>Add</ActionButton>
+                        <ActionButton color="red">Delete</ActionButton>
                       </div>
                     </div>
                   </td>
