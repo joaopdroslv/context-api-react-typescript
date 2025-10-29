@@ -110,9 +110,22 @@ export const ProductsList: FC = () => {
                         </div>
                       </div>
                       <div className="flex flex-col justify-center gap-4">
-                        <ActionButton>Update</ActionButton>
-                        <ActionButton>Add</ActionButton>
-                        <ActionButton color="red">Delete</ActionButton>
+                        <ActionButton
+                          handleClick={() => alert("Not implemented!")}
+                        >
+                          Update
+                        </ActionButton>
+                        <ActionButton
+                          handleClick={() => alert("Not implemented!")}
+                        >
+                          Add
+                        </ActionButton>
+                        <ActionButton
+                          handleClick={() => alert("Not implemented!")}
+                          color="red"
+                        >
+                          Delete
+                        </ActionButton>
                       </div>
                     </div>
                   </td>
