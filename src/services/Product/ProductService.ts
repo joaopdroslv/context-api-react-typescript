@@ -3,7 +3,7 @@ import type { Product } from "../../models/Product/Product";
 import { products, productFiltersParams } from "../../database";
 import type { ProductFiltersParams } from "../../models/Product/ProductFiltersParams";
 
-const baseUrl = "";
+const baseUrl = "BASE_URL_HERE";
 
 export class ProductService extends BaseService<Product> {
   constructor() {

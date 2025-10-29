@@ -2,7 +2,7 @@ import { BaseService } from "../BaseService";
 import type { Supplier } from "../../models/Supplier/Supplier";
 import { suppliers } from "../../database";
 
-const baseUrl = "";
+const baseUrl = "BASE_URL_HERE";
 
 export class SupplierService extends BaseService<Supplier> {
   constructor() {
