@@ -12,18 +12,18 @@ A simple `React + TypeScript` project demonstrating a product listing page with 
 
 ## Key Components
 
-- **ProductsProvider / ProductsContext**
+- `ProductsProvider / ProductsContext`
   Handles fetching products, storing filters, and providing methods to update or clear filters.
   Accessible via `useProducts` hook.
-- **ProductsPage**
+- `ProductsPage`
   Main page that wraps the product filter and list inside the provider.
-- **ProductsFilter**
+- `ProductsFilter`
   Displays filtering UI components for keywords, categories, suppliers, and price ranges.
   Allows clearing and applying filters.
-- **ProductsList**
+- `ProductsList`
   Displays the filtered list of products (implementation depends on your ProductService).
-- **UI Components**
-  - `TagsInput`: Input for keyword tags
-  - `MultiSelectInput`: Select multiple categories or suppliers
-  - `RangeSliderInput`: Select price ranges
-  - `ActionButton`: Reusable button component
+- `UI Components`
+  - **TagsInput**: Input for keyword tags
+  - **MultiSelectInput**: Select multiple categories or suppliers
+  - **RangeSliderInput**: Select price ranges
+  - **ActionButton**: Reusable button component
