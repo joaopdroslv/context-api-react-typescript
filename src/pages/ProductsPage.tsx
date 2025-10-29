@@ -12,8 +12,8 @@ export const ProductsPage: FC = () => {
         <main className="h-full w-4/5 mx-auto flex flex-col items-center py-6">
           <ContentContainer>
             <div className="w-full flex justify-end">
-              <ActionButton color="default" className="w-30">
-                Insert
+              <ActionButton color="green" className="w-30">
+                Create
               </ActionButton>
             </div>
           </ContentContainer>

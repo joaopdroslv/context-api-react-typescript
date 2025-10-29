@@ -13,7 +13,7 @@ export interface Product {
   categories: Category[]; // categories
   suppliers: Supplier[]; // suppliers
   price: MonetaryAmount; // sale price
-  cost?: MonetaryAmount; // cost from supplier
+  cost: MonetaryAmount; // cost from supplier
   currency: Currency;
   stockQuantity: number;
   stockLocation?: string;
