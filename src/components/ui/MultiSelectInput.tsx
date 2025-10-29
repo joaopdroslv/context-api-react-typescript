@@ -68,7 +68,7 @@ export function MultiSelectInput<T, U extends string | number>({
           return (
             <div
               key={val}
-              className="flex items-center bg-blue-200 text-blue-800 px-2 rounded-md text-sm"
+              className="flex items-center bg-purple-200 text-purple-800 px-2 rounded-md text-sm"
             >
               {item ? String(item[keyToDisplay]) : val}
               <button
@@ -77,7 +77,7 @@ export function MultiSelectInput<T, U extends string | number>({
                   e.stopPropagation();
                   toggleSelect(val);
                 }}
-                className="ml-2 text-blue-600 hover:text-blue-900 cursor-pointer text-xl"
+                className="ml-2 text-purple-600 hover:text-purple-900 cursor-pointer text-xl"
               >
                 ×
               </button>
@@ -108,8 +108,8 @@ export function MultiSelectInput<T, U extends string | number>({
                 <div
                   key={i}
                   onClick={() => toggleSelect(val)}
-                  className={`px-3 py-2 text-sm cursor-pointer hover:bg-blue-100 ${
-                    isSelected ? "bg-blue-200" : ""
+                  className={`px-3 py-2 text-sm cursor-pointer hover:bg-purple-100 ${
+                    isSelected ? "bg-purple-200" : ""
                   }`}
                 >
                   {name}

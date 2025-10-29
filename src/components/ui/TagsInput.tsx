@@ -38,13 +38,13 @@ export const TagsInput: FC<TagsInputProps> = ({
       {tags.map((tag, index) => (
         <div
           key={index}
-          className="flex items-center bg-blue-200 text-blue-800 px-2 py-1 rounded-md text-sm"
+          className="flex items-center bg-purple-200 text-purple-800 px-2 py-1 rounded-md text-sm"
         >
           {tag}
           <button
             type="button"
             onClick={() => removeTag(index)}
-            className="ml-1 text-blue-600 hover:text-blue-900"
+            className="ml-1 text-purple-600 hover:text-purple-900"
           >
             ×
           </button>

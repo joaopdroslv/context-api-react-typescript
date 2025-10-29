@@ -51,7 +51,7 @@ export const ToastProvider: FC<{ children: ReactNode }> = ({ children }) => {
                 ? "bg-red-600"
                 : t.type === "warning"
                 ? "bg-yellow-500"
-                : "bg-blue-600"
+                : "bg-purple-600"
             }`}
           >
             {t.message}

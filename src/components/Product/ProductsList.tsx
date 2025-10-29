@@ -18,7 +18,7 @@ export const ProductsList: FC = () => {
 
   return (
     <table className="min-w-full shadow-md rounded-md overflow-hidden divide-y divide-gray-200">
-      <thead className="bg-blue-600 text-white">
+      <thead className="bg-purple-600 text-white">
         <tr>
           <th className="px-3 py-3 text-left text-sm font-medium">#</th>
           <th className="px-3 py-3 text-left text-sm font-medium">Name</th>
@@ -83,7 +83,7 @@ export const ProductsList: FC = () => {
                           {product.tags?.map((t) => (
                             <span
                               key={t}
-                              className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-600 rounded-full"
+                              className="px-3 py-1 text-xs font-medium bg-purple-100 text-purple-600 rounded-full"
                             >
                               {t}
                             </span>

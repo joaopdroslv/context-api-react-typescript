@@ -34,8 +34,8 @@ export const RangeSliderInput: FC<RangeSliderInputProps> = ({
     const percent2 = ((maxVal - min) / (max - min)) * 100;
     return `linear-gradient(to right,
       #E5E7EB ${percent1}%,
-      #3A5AF9 ${percent1}%,
-      #3A5AF9 ${percent2}%,
+      #9811F8 ${percent1}%,
+      #9811F8 ${percent2}%,
       #E5E7EB ${percent2}%)`;
   };
 
@@ -77,7 +77,7 @@ export const RangeSliderInput: FC<RangeSliderInputProps> = ({
               width: 18px;
               height: 18px;
               border-radius: 9999px;
-              background: #3A5AF9;
+              background: #9811F8;
               box-shadow: 0 0 2px rgba(0,0,0,0.2);
               cursor: pointer;
               -webkit-appearance: none;
@@ -87,7 +87,7 @@ export const RangeSliderInput: FC<RangeSliderInputProps> = ({
               width: 18px;
               height: 18px;
               border-radius: 9999px;
-              background: #3A5AF9;
+              background: #9811F8;
               cursor: pointer;
             }
           `}</style>
