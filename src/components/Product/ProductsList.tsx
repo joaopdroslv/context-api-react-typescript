@@ -19,6 +19,7 @@ export const ProductsList: FC = () => {
           <th className="px-3 py-3 text-left text-sm font-medium">Suppliers</th>
           <th className="px-3 py-3 text-left text-sm font-medium">Price</th>
           <th className="px-3 py-3 text-left text-sm font-medium">Rate</th>
+          <th className="px-3 py-3 text-left text-sm font-medium">Actions</th>
         </tr>
       </thead>
       <tbody className="divide-y divide-gray-200">
@@ -42,6 +43,7 @@ export const ProductsList: FC = () => {
               {product.price.amount} {product.price.currency}
             </td>
             <td className="px-3 py-3 text-sm">{product.rating}</td>
+            <td className="px-3 py-3 text-sm">-</td>
           </tr>
         ))}
       </tbody>
