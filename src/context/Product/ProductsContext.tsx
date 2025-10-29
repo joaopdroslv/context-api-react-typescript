@@ -32,9 +32,11 @@ const emptyProductFilters: ProductFilters = {
   categories_ids: [],
   suppliers_ids: [],
   price_min: 0,
-  price_max: 0,
+  price_max: 9999,
+  cost_min: 0,
+  cost_max: 9999,
   rate_min: 0,
-  rate_max: 0,
+  rate_max: 5,
 };
 
 const emptyProductParams: ProductFiltersParams = {
@@ -100,9 +102,11 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
       categories_ids: [],
       suppliers_ids: [],
       price_min: 0,
-      price_max: 0,
+      price_max: 9999,
+      cost_min: 0,
+      cost_max: 9999,
       rate_min: 0,
-      rate_max: 0,
+      rate_max: 5,
     });
 
   return (

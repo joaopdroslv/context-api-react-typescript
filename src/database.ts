@@ -307,8 +307,7 @@ export const products: Product[] = [
   {
     id: 1,
     name: "NorthStar Smart Speaker",
-    shortDescription:
-      "Compact voice-controlled smart speaker. Lorem ipsum dolor sit amet.",
+    shortDescription: "Compact voice-controlled smart speaker.",
     longDescription:
       "High-fidelity smart speaker with voice assistant, Bluetooth, and multi-room support.",
     categories: [categories[1]],

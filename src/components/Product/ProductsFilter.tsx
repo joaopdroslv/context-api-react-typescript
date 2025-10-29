@@ -72,17 +72,49 @@ export const ProductsFilter: FC = () => {
             }}
           />
         </div>
+        <div className="col-span-3">
+          <label htmlFor="price" className="block mb-2 text-sm font-medium">
+            By cost
+          </label>
+          <RangeSliderInput
+            min={0}
+            max={9999}
+            step={1}
+            values={[filters.cost_min ?? 0, filters.cost_max ?? 9999]}
+            setValues={(values) => {
+              updateFilters("cost_min", values[0]);
+              updateFilters("cost_max", values[1]);
+            }}
+          />
+        </div>
       </div>
-      <div className="w-full flex justify-end mt-6">
+      <div className="grid grid-cols-6 gap-4 mt-6">
+        <div className="col-span-3">
+          <label htmlFor="rating" className="block mb-2 text-sm font-medium">
+            By rating
+          </label>
+          <RangeSliderInput
+            min={0}
+            max={5}
+            step={0.1}
+            values={[filters.rate_min ?? 0, filters.rate_max ?? 5]}
+            setValues={(values) => {
+              updateFilters("rate_min", values[0]);
+              updateFilters("rate_max", values[1]);
+            }}
+          />
+        </div>
+      </div>
+      <div className="w-full flex justify-end mt-12">
         <ActionButton color="red" handleClick={clearFilters} className="w-30">
           Clear
         </ActionButton>
         <ActionButton
-          color="green"
+          color="default"
           handleClick={() => refreshProducts(filters)}
           className="ms-4 w-30"
         >
-          Apply
+          Search
         </ActionButton>
       </div>
     </div>
