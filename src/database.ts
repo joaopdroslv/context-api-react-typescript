@@ -1,3 +1,4 @@
+import type { BiData } from "./models/BusinessIntelligence/BiData";
 import type { Category } from "./models/Category/Category";
 import type { Currency } from "./models/Money/Currency";
 import type { MonetaryAmount } from "./models/Money/MonetaryAmount";
@@ -565,4 +566,37 @@ export const products: Product[] = [
 export const productFiltersParams: ProductFiltersParams = {
   categories: categories.map((cat) => ({ id: cat.id, name: cat.name })),
   suppliers: suppliers.map((supp) => ({ id: supp.id, name: supp.name })),
+};
+
+export const biData: BiData = {
+  productStats: [
+    {
+      label: "Total Products",
+      value: 339,
+    },
+    {
+      label: "Active Products",
+      value:117,
+    },
+    {
+      label: "Discontinued Products",
+      value: 25,
+    },
+    {
+      label: "Low Stock (less than 100)",
+      value: 58,
+    },
+    {
+      label: "Out of Stock",
+      value: 11,
+    },
+    {
+      label: "Average Rating",
+      value: 4.3,
+    },
+    {
+      label: "Total Reviews",
+      value: 1132,
+    },
+  ],
 };
