@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from "react";
 import type { Product } from "../../models/Product/Product";
-import type { ProductFiltersParams } from "../../models/Product/ProductFiltersParams";
+import type { ProductParams } from "../../models/Product/ProductParams";
 import type { ProductFilters } from "../../models/Product/ProductFilters";
 import { ProductService } from "../../services/Product/ProductService";
 import { useToast } from "../../hooks/useToast";
@@ -18,7 +18,7 @@ interface ProductsContextProps {
   loadingProducts: boolean;
   products: Product[];
   getProducts: (filters?: ProductFilters) => Promise<void>;
-  deleteProduct: (id: number) => Promise<void>;
+  deleteProducts: (id: number[]) => Promise<void>;
   filters: ProductFilters;
   setFilters: (filters: ProductFilters) => void;
   updateFilters: <K extends keyof ProductFilters>(
@@ -26,9 +26,9 @@ interface ProductsContextProps {
     value: ProductFilters[K]
   ) => void;
   clearFilters: () => void;
-  loadingParams: boolean;
-  params: ProductFiltersParams;
-  // setParams: (params: ProductFiltersParams) => void;
+  loadingProductParams: boolean;
+  productParams: ProductParams;
+  // setProductParams: (params: ProductParams) => void;
   loadingBiData: boolean;
   biData: BiData;
   // setBiData: (biData: BiData) => void;
@@ -46,7 +46,7 @@ const emptyProductFilters: ProductFilters = {
   rate_max: 5,
 };
 
-const emptyProductParams: ProductFiltersParams = {
+const emptyProductParams: ProductParams = {
   categories: [],
   suppliers: [],
 };
@@ -63,9 +63,10 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [loadingProducts, setLoadingProducts] = useState<boolean>(true);
   const [products, setProducts] = useState<Product[]>([]);
   const [filters, setFilters] = useState<ProductFilters>(emptyProductFilters);
-  const [loadingParams, setLoadingParams] = useState<boolean>(true);
-  const [params, setParams] =
-    useState<ProductFiltersParams>(emptyProductParams);
+  const [loadingProductParams, setLoadingProductParams] =
+    useState<boolean>(true);
+  const [productParams, setProductParams] =
+    useState<ProductParams>(emptyProductParams);
   const [loadingBiData, setLoadingBiData] = useState<boolean>(true);
   const [biData, setBiData] = useState<BiData>(emptyBiData);
   const service = new ProductService();
@@ -86,15 +87,15 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const getParams = async (): Promise<void> => {
-    setLoadingParams(true);
+    setLoadingProductParams(true);
     try {
       const data = await service.getParams();
-      setParams(data);
-      toast.success("Filter params loaded successfully!");
+      setProductParams(data);
+      toast.success("Filters params loaded successfully!");
     } catch (err) {
-      toast.error("Failed to load filter params!");
+      toast.error("Failed to load filters params!");
     } finally {
-      setLoadingParams(false);
+      setLoadingProductParams(false);
     }
   };
 
@@ -111,9 +112,9 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  const deleteProduct = async (id: number): Promise<void> => {
+  const deleteProducts = async (ids: number[]): Promise<void> => {
     try {
-      const msg = await service.deleteProduct(id);
+      const msg = await service.deleteProducts(ids);
       toast.success(msg);
     } catch (err) {
       toast.error("Failed to delete the product!");
@@ -155,13 +156,13 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
         loadingProducts,
         products,
         getProducts,
-        deleteProduct,
+        deleteProducts,
         filters,
         setFilters,
         clearFilters,
         updateFilters,
-        loadingParams,
-        params,
+        loadingProductParams,
+        productParams,
         loadingBiData,
         biData,
       }}

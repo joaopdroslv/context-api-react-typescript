@@ -5,7 +5,7 @@ import type { Product } from "../../models/Product/Product";
 import { ActionButton } from "../ui/ActionButton";
 
 export const ProductsList: FC = () => {
-  const { loadingProducts, products, deleteProduct } = useProducts();
+  const { loadingProducts, products, deleteProducts } = useProducts();
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
 
   const toggleRow = (id: number) => {
@@ -132,7 +132,7 @@ export const ProductsList: FC = () => {
                             Add
                           </ActionButton>
                           <ActionButton
-                            handleClick={() => deleteProduct(product.id)}
+                            handleClick={() => deleteProducts([product.id])}
                             color="red"
                           >
                             Delete

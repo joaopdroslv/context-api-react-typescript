@@ -1,7 +1,7 @@
 import { BaseService } from "../BaseService";
 import type { Product } from "../../models/Product/Product";
-import { products, productFiltersParams, biData } from "../../database";
-import type { ProductFiltersParams } from "../../models/Product/ProductFiltersParams";
+import { products, productParams, biData } from "../../database";
+import type { ProductParams } from "../../models/Product/ProductParams";
 import type { BiData } from "../../models/BusinessIntelligence/BiData";
 import { sleep } from "../../utils/Utils";
 
@@ -17,8 +17,8 @@ export class ProductService extends BaseService<Product> {
     return products;
   }
 
-  async getParams(): Promise<ProductFiltersParams> {
-    return productFiltersParams;
+  async getParams(): Promise<ProductParams> {
+    return productParams;
   }
 
   async getBiData(): Promise<BiData> {
@@ -26,13 +26,8 @@ export class ProductService extends BaseService<Product> {
     return biData;
   }
 
-  async deleteProduct(id: number): Promise<string> {
-    console.log(`Requested to delete product of ID ${id}`);
-    return "Deleted successfully!";
-  }
-
   async deleteProducts(ids: number[]): Promise<string> {
-    console.log(`Requested to delete product of IDs [${ids.join(", ")}]`);
+    console.log(`Requested to delete products of IDs [${ids.join(", ")}]`);
     return "Deleted successfully!";
   }
 }

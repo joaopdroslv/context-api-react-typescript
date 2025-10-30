@@ -11,11 +11,11 @@ export const ProductsFilter: FC = () => {
     filters,
     updateFilters,
     clearFilters,
-    loadingParams,
-    params,
+    loadingProductParams,
+    productParams,
   } = useProducts();
 
-  if (loadingParams) return <p>Loading...</p>;
+  if (loadingProductParams) return <p>Loading...</p>;
 
   return (
     <div className="w-full">
@@ -38,7 +38,7 @@ export const ProductsFilter: FC = () => {
             Category
           </label>
           <MultiSelectInput
-            options={params.categories}
+            options={productParams.categories}
             selected={filters.categories_ids ?? []}
             setSelected={(ids) =>
               updateFilters("categories_ids", ids as number[])
@@ -53,7 +53,7 @@ export const ProductsFilter: FC = () => {
             Supplier
           </label>
           <MultiSelectInput
-            options={params.suppliers}
+            options={productParams.suppliers}
             selected={filters.suppliers_ids ?? []}
             setSelected={(ids) =>
               updateFilters("suppliers_ids", ids as number[])
