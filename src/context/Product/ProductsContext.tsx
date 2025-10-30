@@ -12,19 +12,25 @@ import type { ProductFilters } from "../../models/Product/ProductFilters";
 import { ProductService } from "../../services/Product/ProductService";
 import { useToast } from "../../hooks/useToast";
 import { toast } from "react-toastify";
+import type { BiData } from "../../models/BusinessIntelligence/BiData";
 
 interface ProductsContextProps {
+  loadingProducts: boolean;
   products: Product[];
-  loading: boolean;
+  getProducts: (filters?: ProductFilters) => Promise<void>;
   filters: ProductFilters;
-  params: ProductFiltersParams;
   setFilters: (filters: ProductFilters) => void;
   updateFilters: <K extends keyof ProductFilters>(
     key: K,
     value: ProductFilters[K]
   ) => void;
   clearFilters: () => void;
-  refreshProducts: (filters?: ProductFilters) => Promise<void>;
+  loadingParams: boolean;
+  params: ProductFiltersParams;
+  // setParams: (params: ProductFiltersParams) => void;
+  loadingBiData: boolean;
+  biData: BiData;
+  // setBiData: (biData: BiData) => void;
 }
 
 const emptyProductFilters: ProductFilters = {
@@ -44,21 +50,28 @@ const emptyProductParams: ProductFiltersParams = {
   suppliers: [],
 };
 
+const emptyBiData: BiData = {
+  productStats: [],
+};
+
 const ProductsContext = createContext<ProductsContextProps | undefined>(
   undefined
 );
 
 export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const [loadingProducts, setLoadingProducts] = useState<boolean>(true);
   const [products, setProducts] = useState<Product[]>([]);
+  const [filters, setFilters] = useState<ProductFilters>(emptyProductFilters);
+  const [loadingParams, setLoadingParams] = useState<boolean>(true);
   const [params, setParams] =
     useState<ProductFiltersParams>(emptyProductParams);
-  const [filters, setFilters] = useState<ProductFilters>(emptyProductFilters);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loadingBiData, setLoadingBiData] = useState<boolean>(true);
+  const [biData, setBiData] = useState<BiData>(emptyBiData);
   const service = new ProductService();
   const { showToast } = useToast();
 
-  const getAll = async (f: ProductFilters = filters): Promise<void> => {
-    setLoading(true);
+  const getProducts = async (f: ProductFilters = filters): Promise<void> => {
+    setLoadingProducts(true);
     try {
       console.log(f);
       const data = await service.getAll();
@@ -67,23 +80,40 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
     } catch (err) {
       toast.error("Failed to load products!");
     } finally {
-      setLoading(false);
+      setLoadingProducts(false);
     }
   };
 
   const getParams = async (): Promise<void> => {
+    setLoadingParams(true);
     try {
       const data = await service.getParams();
       setParams(data);
       toast.success("Filter params loaded successfully!");
     } catch (err) {
       toast.error("Failed to load filter params!");
+    } finally {
+      setLoadingParams(false);
+    }
+  };
+
+  const getBiData = async (): Promise<void> => {
+    setLoadingBiData(true);
+    try {
+      const data = await service.getBiData();
+      setBiData(data);
+      toast.success("Bi data loaded successfully!");
+    } catch (err) {
+      toast.error("Failed to load bi data!");
+    } finally {
+      setLoadingBiData(false);
     }
   };
 
   useEffect(() => {
-    getAll(filters);
+    getProducts(filters);
     getParams();
+    getBiData();
   }, []);
 
   const updateFilters = <K extends keyof ProductFilters>(
@@ -112,14 +142,17 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <ProductsContext.Provider
       value={{
+        loadingProducts,
         products,
-        loading,
+        getProducts,
         filters,
-        params,
         setFilters,
-        clearFilters: clearFilters,
+        clearFilters,
         updateFilters,
-        refreshProducts: getAll,
+        loadingParams,
+        params,
+        loadingBiData,
+        biData,
       }}
     >
       {children}

@@ -6,8 +6,16 @@ import { ActionButton } from "../ui/ActionButton";
 import { RangeSliderInput } from "../ui/RangeSliderInput";
 
 export const ProductsFilter: FC = () => {
-  const { filters, params, updateFilters, clearFilters, refreshProducts } =
-    useProducts();
+  const {
+    loadingParams,
+    filters,
+    params,
+    updateFilters,
+    clearFilters,
+    getProducts,
+  } = useProducts();
+
+  if (loadingParams) return <p>Loading...</p>;
 
   return (
     <div className="w-full">
@@ -111,7 +119,7 @@ export const ProductsFilter: FC = () => {
         </ActionButton>
         <ActionButton
           color="default"
-          handleClick={() => refreshProducts(filters)}
+          handleClick={() => getProducts(filters)}
           className="ms-4 w-30"
         >
           Search

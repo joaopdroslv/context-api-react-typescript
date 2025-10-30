@@ -5,7 +5,7 @@ import type { Product } from "../../models/Product/Product";
 import { ActionButton } from "../ui/ActionButton";
 
 export const ProductsList: FC = () => {
-  const { products, loading } = useProducts();
+  const { products, loadingProducts } = useProducts();
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
 
   const toggleRow = (id: number) => {
@@ -14,7 +14,7 @@ export const ProductsList: FC = () => {
     );
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loadingProducts) return <p>Loading...</p>;
 
   return (
     <>
