@@ -74,7 +74,7 @@ export const ProductsList: FC = () => {
                   <td className="px-3 py-3 text-sm">{product.rating}</td>
                   <td className="px-3 py-3 text-sm">
                     <ActionButton
-                      color={isExpanded ? "red" : "default"}
+                      color="default"
                       className="w-25"
                       handleClick={() => toggleRow(product.id)}
                     >

@@ -18,7 +18,7 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className="fixed inset-0 z-999 flex items-center justify-center bg-black/50"
       role="dialog"
     >
       <div className="relative bg-white rounded-lg shadow-sm p-6 w-full max-w-sm">

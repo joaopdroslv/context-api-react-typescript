@@ -56,7 +56,7 @@ export const RangeSliderInput: FC<RangeSliderInputProps> = ({
             step={step}
             value={minVal}
             onChange={handleMinChange}
-            className="absolute w-full appearance-none bg-transparent z-20 pointer-events-none top-1/2 -translate-y-1/2"
+            className="absolute w-full appearance-none bg-transparent z-1 pointer-events-none top-1/2 -translate-y-1/2"
           />
           <input
             type="range"
@@ -65,7 +65,7 @@ export const RangeSliderInput: FC<RangeSliderInputProps> = ({
             step={step}
             value={maxVal}
             onChange={handleMaxChange}
-            className="absolute w-full appearance-none bg-transparent z-20 pointer-events-none top-1/2 -translate-y-1/2"
+            className="absolute w-full appearance-none bg-transparent z-1 pointer-events-none top-1/2 -translate-y-1/2"
           />
           <div
             className="absolute w-full h-2 rounded-full top-1/2 -translate-y-1/2"
