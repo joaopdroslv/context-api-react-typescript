@@ -7,12 +7,12 @@ import { RangeSliderInput } from "../ui/RangeSliderInput";
 
 export const ProductsFilter: FC = () => {
   const {
-    loadingParams,
+    getProducts,
     filters,
-    params,
     updateFilters,
     clearFilters,
-    getProducts,
+    loadingParams,
+    params,
   } = useProducts();
 
   if (loadingParams) return <p>Loading...</p>;

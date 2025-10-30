@@ -18,6 +18,7 @@ interface ProductsContextProps {
   loadingProducts: boolean;
   products: Product[];
   getProducts: (filters?: ProductFilters) => Promise<void>;
+  deleteProduct: (id: number) => Promise<void>;
   filters: ProductFilters;
   setFilters: (filters: ProductFilters) => void;
   updateFilters: <K extends keyof ProductFilters>(
@@ -74,7 +75,7 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setLoadingProducts(true);
     try {
       console.log(f);
-      const data = await service.getAll();
+      const data = await service.getProducts();
       setProducts(data);
       toast.success("Products loaded successfully!");
     } catch (err) {
@@ -107,6 +108,15 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
       toast.error("Failed to load bi data!");
     } finally {
       setLoadingBiData(false);
+    }
+  };
+
+  const deleteProduct = async (id: number): Promise<void> => {
+    try {
+      const msg = await service.deleteProduct(id);
+      toast.success(msg);
+    } catch (err) {
+      toast.error("Failed to delete the product!");
     }
   };
 
@@ -145,6 +155,7 @@ export const ProductsProvider: FC<{ children: ReactNode }> = ({ children }) => {
         loadingProducts,
         products,
         getProducts,
+        deleteProduct,
         filters,
         setFilters,
         clearFilters,

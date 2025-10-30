@@ -5,7 +5,7 @@ import type { Product } from "../../models/Product/Product";
 import { ActionButton } from "../ui/ActionButton";
 
 export const ProductsList: FC = () => {
-  const { products, loadingProducts } = useProducts();
+  const { loadingProducts, products, deleteProduct } = useProducts();
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
 
   const toggleRow = (id: number) => {
@@ -86,11 +86,11 @@ export const ProductsList: FC = () => {
                 {isExpanded && (
                   <tr className="bg-gray-50">
                     <td colSpan={9} className="px-6 py-6">
-                      <div className="grid grid-cols-7 gap-10 w-full">
+                      <div className="grid grid-cols-7 gap-10 w-full h-full">
                         <div className="col-span-3 flex flex-col">
                           <h3 className="font-bold"># Description</h3>
                           <p className="mt-5">{product.longDescription}</p>
-                          <div className="flex flex-wrap gap-2 mt-5">
+                          <div className="flex flex-wrap gap-2 mt-auto">
                             {product.tags?.map((t) => (
                               <span
                                 key={t}
@@ -132,7 +132,7 @@ export const ProductsList: FC = () => {
                             Add
                           </ActionButton>
                           <ActionButton
-                            handleClick={() => alert("Not implemented!")}
+                            handleClick={() => deleteProduct(product.id)}
                             color="red"
                           >
                             Delete

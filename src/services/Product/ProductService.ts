@@ -12,7 +12,7 @@ export class ProductService extends BaseService<Product> {
     super(baseUrl);
   }
 
-  async getAll(): Promise<Product[]> {
+  async getProducts(): Promise<Product[]> {
     await sleep(5000);
     return products;
   }
@@ -22,7 +22,17 @@ export class ProductService extends BaseService<Product> {
   }
 
   async getBiData(): Promise<BiData> {
-    await sleep(10000)
+    await sleep(10000);
     return biData;
+  }
+
+  async deleteProduct(id: number): Promise<string> {
+    console.log(`Requested to delete product of ID ${id}`);
+    return "Deleted successfully!";
+  }
+
+  async deleteProducts(ids: number[]): Promise<string> {
+    console.log(`Requested to delete product of IDs [${ids.join(", ")}]`);
+    return "Deleted successfully!";
   }
 }
