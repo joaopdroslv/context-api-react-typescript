@@ -11,6 +11,9 @@ export class ProductService extends BaseService<Product> {
   }
 
   async getAll(): Promise<Product[]> {
+    const sleep = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
+    await sleep(5000);
     return products;
   }
 
